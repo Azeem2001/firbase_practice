@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { auth, signInWithEmailAndPassword } from "../../config/Firebase";
 import { useNavigate } from "react-router-dom";
+import style from "../rigester/rigs.module.css"
 
 const Login = () => {
     let navigate = useNavigate()
   const [email, setEmail] = useState("");
-  const [to,setto]=useState("/")
+  
   const [password, setPassword] = useState("");
   async function userReg() {
     if (!email) {
@@ -23,29 +24,33 @@ const Login = () => {
     }
   }
   return (
-    <div>
-      <label htmlFor="Email">
-        <input
-          type="email"
-          id="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your Email"
-        />
-      </label>
-      <br />
-      <label htmlFor="Password">
-        <input
-          type="password"
-          id="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Enter your Password"
-        />
-      </label>
-      <br />
-      <button onClick={userReg}>Login</button>
+    <div className={style.container}>
+    <h2>Login with us</h2>
+
+    <div className={style.form_control}>
+      <label htmlFor="email">Email</label>
+      <input
+        type="text"
+        id="email"
+        placeholder="Enter email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <small>Error message</small>
     </div>
+    <div className={style.form_control}>
+      <label htmlFor="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <small>Error message</small>
+    </div>
+    <button onClick={userReg}>login</button>
+  </div>
   );
 };
 export default Login;
